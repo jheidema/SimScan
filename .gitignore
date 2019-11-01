@@ -1,0 +1,12 @@
+#.gitignore
+
+#directories
+17NWidth/
+nextsims/
+
+#files
+*.root
+*.so
+*.o
+*_C*
+
