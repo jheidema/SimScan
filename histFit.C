@@ -3,7 +3,7 @@
 #include "nResponse.hpp"
 
 
-void testFit(TH1F *hIn, Bool_t kFit){
+void histFit(TH1F *hIn, Bool_t kFit){
 
     double xMax = hIn->GetBinCenter(hIn->GetMaximumBin());
     double yMax = hIn->GetBinContent(hIn->GetMaximumBin());
@@ -16,7 +16,7 @@ void testFit(TH1F *hIn, Bool_t kFit){
     
     hIn->Draw();
     fTOF->SetParameters(xMax,0.02,1.5,2.0,0.09,2.5,0.13,8.2,0.021,17.5,yMax);
-    if(kFit) hIn->Fit(fTOF,"","",xMax-20,upperX);
+    if(kFit) hIn->Fit(fTOF,"","",xMax-40,upperX);
         else fTOF->Draw("same");
 
     return;
