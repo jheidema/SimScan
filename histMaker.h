@@ -17,7 +17,7 @@ void histMaker(const char *fileListname, const int nF){
     Int_t ih=0;
     TH1D *hh;
 
-    TCanvas *c1 = new TCanvas();
+//    TCanvas *c1 = new TCanvas();
 //    string dummy;
 
     while (getline(inFile,fName)){
