@@ -10,3 +10,5 @@ nextsims/
 *.o
 *_C*
 
+#specific
+fileList.txt

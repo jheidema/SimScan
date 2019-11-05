@@ -41,9 +41,9 @@ void nTOFscan(Bool_t kMake = true){
         c1->Update();
         c1->WaitPrimitive();
 
-        cout << energies[ih] << ", " ;
+        cout << energies[ih] ;
         for (int ip=0; ip<11; ++ip){
-            cout << fTOF->GetParameter(ip) << ", ";
+            cout << ", " << fTOF->GetParameter(ip) ;
             parVals[ih][ip] = fTOF->GetParameter(ip);
         }   
         cout << endl;
@@ -55,14 +55,15 @@ void nTOFscan(Bool_t kMake = true){
 
 
     TFile *fOut = new TFile("parVals.root","RECREATE");
-    TGraph *gp[11];
-    for (int ig = 0; ig<11; ig++){
-        gp[ig]=new TGraph();
-        gp[ig]->SetName(fTOF->GetParName(ig));
+    TGraph *gp[10];
+    for (int ig = 1; ig<11; ig++){
+        gp[ig-1]=new TGraph();
+        gp[ig-1]->SetNameTitle(fTOF->GetParName(ig),fTOF->GetParName(ig));
+        gp[ig-1]->SetMarkerColor(kRed);gp[ig-1]->SetMarkerStyle(20);gp[ig-1]->SetLineWidth(2);
         for (int iE=0; iE<9;iE++){
-            gp[ig]->SetPoint(iE,energies[iE],parVals[iE][ig]);
+            gp[ig-1]->SetPoint(iE,parVals[iE][0],parVals[iE][ig]);  //plot parameter values vs t0
         }
-        gp[ig]->Write();
+        gp[ig-1]->Write();
     }
 
 
